@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if (numRows < 2) {
+            return s;
+        }
+
+        int len = s.length();
+        vector<string> vStr(numRows);
+        bool isTop2Bottom = true;
+        int row = 0;
+        for (int i = 0; i < len; i++) {
+            vStr[row].push_back(s[i]);
+            if (row == 0) {
+                isTop2Bottom = true;
+            } else if (row == numRows - 1) {
+                isTop2Bottom = false;
+            }
+            if (isTop2Bottom) {
+                row++;
+            } else {
+                row--;
+            }
+        }
+
+        string res;
+        for (int i = 0; i < numRows; i++) {
+            res += vStr[i];
+        }
+
+        return res;
+    }
+};
